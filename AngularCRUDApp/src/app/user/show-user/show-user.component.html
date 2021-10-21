@@ -1,0 +1,53 @@
+<button mat-raised-button color="accent" style="margin-left: 900px;width: 100px;" (click)="addClick()">
+  <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">add_circle_outline </mat-icon> -->
+  ADD USER
+</button>
+
+<table mat-table [dataSource]="UserList" class="mat-elevation-z8" style="width: 1000px;color: black; ">
+
+  <!-- UserName Column -->
+  <ng-container matColumnDef="First_Name">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color: black;size: 1px;"> User Name </th>
+    <td *matCellDef="let i" style="text-align: center;">{{i["First_Name"]}} {{i["Middle_Name"]}} {{i["Last_Name"]}}</td>
+
+  </ng-container>
+
+  <!-- Created On Column -->
+  <ng-container matColumnDef="Created_On">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color: black;size: 1px;"> Creadted On</th>
+    <td *matCellDef="let i" style="text-align: center;">{{i["Created_On"]}}</td>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="Email">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color: black;size: 1px;"> Email</th>
+    <td *matCellDef="let i" style="text-align: center;">{{i["Email"]}}</td>
+  </ng-container>
+
+  <!-- State Column -->
+  <ng-container matColumnDef="Add_State">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color: black;size: 1px;"> State</th>
+    <td *matCellDef="let i" style="text-align: center;">{{i["Add_State"]}}</td>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="Action">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center; color: black;size: 1px;"> Action</th>
+    <td *matCellDef="let i" style="text-align: center;">
+      <button mat-button (click)="updateUserdata(i)" style="color: rgb(9, 43, 197);width: 60px;margin-right: 16px">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+      </button>
+      <button mat-button (click)="deleteClick(i)" style="color:rgb(23, 20, 218);width: 60px;">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table><br>
+
+<mat-paginator style="display: flex-end;" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+  aria-label="Select page of user details ">
+</mat-paginator>

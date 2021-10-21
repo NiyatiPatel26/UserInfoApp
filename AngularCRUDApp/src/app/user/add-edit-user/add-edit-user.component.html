@@ -1,0 +1,18 @@
+<div style="width: 1200px;background-color: rgb(108, 82, 49);">
+  <mat-form id="userForm" [formGroup]="UserInfoForm">
+    <mat-horizontal-stepper #stepper toggle>
+      <mat-step formGroupName="PersonalDetails" [stepControl]="UserInfoForm.get('PersonalDetails')">
+        <ng-template matStepLabel>Fill out your Personal Details:</ng-template>
+        <app-step1 [userForm]="UserInfoForm"></app-step1>
+      </mat-step>
+      <mat-step formGroupName="AddressDetails" [stepControl]="UserInfoForm.get('AddressDetails')">
+        <ng-template matStepLabel>Fill out your Address Details:</ng-template>
+        <app-step2 [userForm]="UserInfoForm"></app-step2>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Preview</ng-template>
+        <app-step3 [userForm]="UserInfoForm"></app-step3>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-form>
+</div>

@@ -1,0 +1,45 @@
+<form [formGroup]="userForm">
+  <div formGroupName="PersonalDetails">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name*</mat-label>
+      <input matInput formControlName="First_Name">
+    </mat-form-field><br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Middle Name*</mat-label>
+      <input matInput formControlName="Middle_Name">
+    </mat-form-field><br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name*</mat-label>
+      <input matInput formControlName="Last_Name">
+    </mat-form-field><br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email Id*</mat-label>
+      <input matInput formControlName="Email">
+    </mat-form-field><br>
+    <div [hidden]="!userForm.get('PersonalDetails').get('Email')?.errors?.email">
+      Enter a valid email address!
+    </div><br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date Of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="Date_Of_Birth" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contact Number*</mat-label>
+      <input matInput formControlName="Phone_No">
+    </mat-form-field><br>
+    <div
+      [hidden]="!userForm.get('PersonalDetails').get('Phone_No')?.errors?.pattern && !userForm.get('PersonalDetails').get('Phone_No')?.errors?.minlength && !userForm.get('PersonalDetails').get('Phone_No')?.errors?.maxlength">
+      Mobile Number should be of 10 digits!
+    </div>
+  </div>
+</form>
+
+<button mat-stroked-button color="primary" matStepperNext (click)="step1Submitted()"
+  style="width: 100px;height: 40px;">Next</button>
